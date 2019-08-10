@@ -595,7 +595,7 @@ $de1 = json_decode($profile, true);
                                                 </td>
                                                 <th>
                                                     <form method="post">
-                                                        <button type="button" data-toggle="modal" class="btn btn-primary" name="iduser" type="submit"  data-target=".modal-edit<?php echo $d["iduser"]; ?>">Edit</button>
+                                                        <button type="button" data-toggle="modal" class="btn btn-primary" name="iduser" type="submit"  data-target=".modal-edit<?php echo $d["idcustomer"]; ?>">Edit</button>
                                                     </form>
                                                     <form action="deletecustomer.php" method="post">
                                                         <button class="btn btn-danger" name="idcustomer" value="<?php echo $d["idcustomer"]?>" type="submit">Hapus</button>
@@ -626,7 +626,7 @@ $de1 = json_decode($profile, true);
                 </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action='postpengguna.php'>
+                    <form method="post" action='postcustomer.php'>
                     <div class="position-relative form-group"><label for="exampleEmail" class="">Nama</label>
                         <input name="nama" placeholder="ketik nama anda disini..." type="text" class="form-control" required>
                     </div>
@@ -662,11 +662,11 @@ $de1 = json_decode($profile, true);
 </div>
 
 <?php
-    foreach ($de1["Result"] as $data => $d1) :
+    foreach ($de["Result"] as $data => $d) :
 ?>
 
  <!-- MODAL PENGGUNA -->
- <div class="modal fade modal-edit<?php echo $d1['iduser']; ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+ <div class="modal fade modal-edit<?php echo $d['idcustomer']; ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -676,41 +676,33 @@ $de1 = json_decode($profile, true);
                 </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="editpengguna.php">    
-                    <input name="id" value="<?php echo $d1['iduser'] ?>">
-                        <div class="position-relative form-group"><label for="exampleEmail" class="">Nama</label>
-                            <input name="nama" id="exampleEmail" value="<?php echo $d["nama"] ?>" placeholder="ketik nama anda disini..." type="text" class="form-control" required>
+                    <form method="post" action="editcustomer.php">    
+                    <input name="id" value="<?php echo $d['idcustomer'] ?>" style="display:none">
+                    <div class="position-relative form-group"><label for="exampleEmail" class="">Nama</label>
+                        <input name="nama" value="<?php echo $d['nama'] ?>" placeholder="ketik nama anda disini..." type="text" class="form-control" required>
+                    </div>
+                    <div class="position-relative form-group">
+                        <label for="examplePassword" class="">Alamat</label>
+                        <input name="alamat" value="<?php echo $d['alamat'] ?>" placeholder="ketik Alamat anda disini..." type="text" class="form-control" required>
+                    </div>
+                    <div class="position-relative form-group">
+                        <label for="examplePassword" class="">No Telp</label>
+                        <input name="notelp" value="<?php echo $d['notelp'] ?>" placeholder="ketik No.Telp anda disini..." type="number" class="form-control" required>
+                    </div>
+                    <div class="position-relative form-group">
+                        <label for="examplePassword" class="">Contact Person</label>
+                        <input name="cp" value="<?php echo $d['cp'] ?>" placeholder="ketik Contact Person anda disini..." type="text" class="form-control" required>
+                    </div>
+                    <div class="position-relative form-group">
+                        <label for="examplePassword" class="">Kode Sistem</label>
+                        <input name="kdsistem" value="<?php echo $d['kodesistem'] ?>" placeholder="ketik Kode Sistem anda disini..." type="text" class="form-control" required>
+                    </div>
+                    <div class="position-relative form-group">
+                        <div name="aktif" class="custom-checkbox custom-control">
+                            <input name="aktif" value="1" type="checkbox" id="exampleCustomCheckbox2" class="custom-control-input" checked>
+                            <label class="custom-control-label" for="exampleCustomCheckbox2">Aktif</label>
                         </div>
-                        <div class="position-relative form-group">
-                            <label for="examplePassword" class="">Password</label>
-                            <input name="password" value="<?php echo $d["password"] ?>" id="examplePassword" placeholder="ketik password anda disini..." type="password" class="form-control" required>
-                            <br/>
-                            <input name="rpassword" id="examplePassword" placeholder="ketik Ulang password anda disini..." type="password" class="form-control">
-                        </div>
-                        <div class="position-relative form-group">
-                            <label for="exampleSelect" class="">Jabatan</label>
-                            <select name="jabatan" id="exampleSelect" class="form-control">
-                                <?php if ($d['jabatan']=="Admin"){ ?>
-                                    <option selected = "Selected" value="Admin">Admin</option>
-                                    <option value="Finance">Finance</option>
-                                    <option value="User">User</option>
-                                <?php } elseif ($d['jabatan']=="Finance") { ?>
-                                    <option value="Admin">Admin</option>
-                                    <option selected = "Selected" value="Finance">Finance</option>
-                                    <option value="User">User</option>
-                                <?php }elseif ($d['jabatan']=="User") { ?>
-                                    <option value="Admin">Admin</option>
-                                    <option value="Finance">Finance</option>
-                                    <option selected = "Selected" value="User">User</option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                        <div class="position-relative form-group">
-                            <div name="aktif" class="custom-checkbox custom-control">
-                                <input name="aktif" value="1" type="checkbox" id="exampleCustomCheckbox2" class="custom-control-input">
-                                <label class="custom-control-label" for="exampleCustomCheckbox2">Aktif</label>
-                            </div>
-                        </div>
+                    </div>
                         <br>
                         <button class="mt-1 btn btn-primary" type="submit">Simpan</button>
                     </form>

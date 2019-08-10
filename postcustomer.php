@@ -1,22 +1,16 @@
 <?php
-header('Location: datapengguna.php');
-   $profile = "localhost:8989/customeri";
-    // $profile = "localhost:8989/userd";
-
+    header('Location: datacustomer.php');
+    $profile = "localhost:8989/customeri";
+    
     $ch = curl_init($profile);
 
-    if ($_POST['aktif'] != ""){
-        $value = 1;
-    }else{
-        $value =0 ;
-    }
-
     $basedata = array(
-        'iduser'=>(int)$_POST['id'],
         'nama'=> $_POST['nama'],
-        'jabatan'=> $_POST['jabatan'],
-        'password'=> $_POST['password'],
-        'aktif'=> $value
+        'alamat'=> $_POST['alamat'],
+        'notelp'=> $_POST['notelp'],
+        'cp'=> $_POST['cp'],
+        'kodesistem'=> $_POST['kdsistem'],
+        'aktif'=> 1
 
         // 'aktif'=> 1
     );

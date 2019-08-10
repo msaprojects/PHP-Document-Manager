@@ -616,7 +616,7 @@ function http_request($url){
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Tambah Data Transaksi</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -661,8 +661,8 @@ function http_request($url){
                     <div class="position-relative form-group">
                         <label for="exampleSelect" class="">Status</label>
                         <select name="status" id="exampleSelect" class="form-control">
-                            <option value="Publish">Publish</option>
                             <option value="Non-Publish">Non-Publish</option>
+                            <option value="Publish">Publish</option>
                         </select>
                     </div>
                     <br>

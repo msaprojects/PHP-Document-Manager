@@ -1,5 +1,5 @@
 <?php
-header('Location: datapengguna.php');
+header('Location: datacustomer.php');
    $profile = "localhost:8989/customerd";
 
     $ch = curl_init($profile);

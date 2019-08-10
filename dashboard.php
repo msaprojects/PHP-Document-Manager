@@ -31,9 +31,10 @@
     
     $profile = http_request("localhost:8989/dashboard");
     $profile2 = http_request("localhost:8989/transaksidashboard");
+    $profile3 = http_request("localhost:8989/transaksiblmaccfinance");
     $de = json_decode($profile, true);
     $de2 = json_decode($profile2, true);
-
+    $de3 = json_decode($profile3, true);
 ?>
 <!doctype html>
 <html lang="en">
@@ -551,7 +552,7 @@
                                         <thead>
                                         <tr>
                                             <th class="text-center">#</th>
-                                            <th class="text-center">Tanggal Tes</th>
+                                            <th class="text-center">Nama Tes</th>
                                             <th class="text-center">Tanggal Tes</th>
                                             <th class="text-center">Peminta Tes</th>
                                             <th class="text-center">Biaya</th>
@@ -572,6 +573,49 @@
                                         <td class="text-center">
                                             <button type="button" id="PopoverCustomT-4" class="btn btn-primary btn-sm">Lihat</button>
                                             <button type="button" id="PopoverCustomT-4" class="btn btn-primary btn-sm">Download</button>
+                                        </td>
+                                        </tr>
+                                        <?php endforeach ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="d-block text-center card-footer">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="main-card mb-3 card">
+                                <div class="card-header">Dokumen Yang Belum Acc Finance
+                                    <div class="btn-actions-pane-right">
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th class="text-center">#</th>
+                                            <th class="text-center">Nama Tes</th>
+                                            <th class="text-center">Tanggal Tes</th>
+                                            <th class="text-center">Peminta Tes</th>
+                                            <th class="text-center">Biaya</th>
+                                            <th class="text-center">Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php
+                                            $i=1;
+                                            foreach ($de3["Result"] as $data => $d) :
+                                        ?>
+                                        <tr>
+                                        <td class="text-center text-muted"><?php echo $i; $i++?></td>
+                                        <td class="text-left"><?php echo $d["nama_tes"]?></td>
+                                        <td class="text-center"><?php echo $d["tgl_tes"]?></td>
+                                        <td class="text-left"><?php echo $d["peminta_tes"]?></td>
+                                        <td class="text-right"><?php echo $d["finance_biaya"]?></td>
+                                        <td class="text-center">
+                                            <button type="button" id="PopoverCustomT-4" onclick="datatransaksi.php" class="btn btn-danger btn-sm">Acc Sekarang</button>
                                         </td>
                                         </tr>
                                         <?php endforeach ?>
