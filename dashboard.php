@@ -478,7 +478,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="datatransaksi2.php">
+                                <a href="datatransaksi.php">
                                     <i class="metismenu-icon pe-7s-display2"></i>
                                     Document Manager
                                 </a>

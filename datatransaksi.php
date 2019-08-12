@@ -548,6 +548,7 @@ function http_request($url){
                             <div class="col-lg-12">
                             <ul class="body-tabs body-tabs-layout tabs-animated body-tabs-animated nav">
                                 <li class="nav-item">
+                                    <?php if ($_SESSION['sesi_jabatan']!='Finance') ?>
                                         <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target=".bd-example-modal-insert">Tambah Data Transaksi</button>
                                 </li>
                             </ul>
@@ -558,14 +559,13 @@ function http_request($url){
                                             <tr>
                                                 <th class="text-center">#</th>
                                                 <th class="text-center">Nama Tes</th>
-                                                <th class="text-center">Keterangan</th>
                                                 <th class="text-center">Tanggal Tes</th>
                                                 <th class="text-center">Lokasi</th>
                                                 <th class="text-center">Peminta Tes</th>
                                                 <th class="text-center">Customer</th>
                                                 <th class="text-center">Biaya</th>
-                                                <th class="text-center">Finance Tanggal</th>
                                                 <th class="text-center">Status</th>
+                                                <th class="text-center">File</th>
                                                 <th class="text-center">Action</th>
                                             </tr>
                                             </thead>
@@ -577,21 +577,27 @@ function http_request($url){
                                             <tr>
                                                 <th scope="row"><?php echo $i; $i++?></th>
                                                 <td class="text-left"><?php echo $d["nama_tes"]?></td>
-                                                <td class="text-left"><?php echo $d["keterangan"] ?></td>
                                                 <td class="text-center"><?php echo $d["tgl_tes"] ?></td>
                                                 <td class="text-left"><?php echo $d["lokasi"] ?></td>
                                                 <td class="text-left"><?php echo $d["peminta_tes"] ?></td>
                                                 <td class="text-left"><?php echo $d["customer"] ?></td>
                                                 <td class="text-right"><?php echo $d["finance_biaya"] ?></td>
-                                                <td class="text-center"><?php echo $d["finance_tgl"] ?></td>
-                                                <td class="text-center"><?php echo $d["status"] ?></td>
+                                                <td class="text-center"><?php echo strval($d["file"]) ?></td>
+                                                <td class="text-center">
+                                                    <div name="aktif" class="custom-checkbox custom-control">
+                                                    <input name="aktif" value="1" type="checkbox" id="exampleCustomCheckbox2" class="custom-control-input" <?php if(!empty($d["file"])){?>checked="checked"<?php } ?> disabled>
+                                                        <label class="custom-control-label" for="exampleCustomCheckbox2">File</label>
+                                                    </div>
+                                                </td>
                                                 <th class="text-center">
                                                 <?php if($_SESSION['sesi_jabatan'] == "User"){ ?>
                                                     <button type="button" class="btn mr-2 mb-2 btn-success" data-toggle="modal" data-target=".bd-example-modal-edit-user<?php echo $d['idtransaksi'] ?>">User</button>
+                                                    <button type="button" class="btn mr-2 mb-2 btn-success" data-toggle="modal" data-target=".bd-example-modal-upload<?php echo $d['idtransaksi'] ?>">Upload Berkas</button>
                                                 <?php } elseif ($_SESSION['sesi_jabatan'] == "Finance") { ?>
                                                     <button type="button" class="btn mr-2 mb-2 btn-success" data-toggle="modal" data-target=".bd-example-modal-edit-finance<?php echo $d['idtransaksi'] ?>">Finance</button>
                                                 <?php } elseif ($_SESSION['sesi_jabatan'] == "Admin") { ?>
                                                     <button type="button" class="btn mr-2 mb-2 btn-success" data-toggle="modal" data-target=".bd-example-modal-edit-admin<?php echo $d['idtransaksi'] ?>">Admin</button>
+                                                    <button type="button" class="btn mr-2 mb-2 btn-success" data-toggle="modal" data-target=".bd-example-modal-upload<?php echo $d['idtransaksi'] ?>">Upload Berkas</button>
                                                 <?php } ?>
                                                 <form action="deletetransaksi.php" method="post">
                                                     <button class="btn btn-danger" name="idtransaksi" value="<?php echo $d["idtransaksi"]?>" type="submit">Hapus</button>
@@ -676,6 +682,34 @@ function http_request($url){
 <!-- END MODAL FOR INSERT TRANSAKSI  -->
 
 <?php
+    foreach ($de["Result"] as $data => $d) :
+?>
+
+<!-- MODAL FOR UPLOAD TRSNSAKSI -->
+<div class="modal fade bd-example-modal-upload<?php echo $d['idtransaksi']; ?>" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Upload File</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <form action="uploadfile.php" method="post" enctype="multipart/form-data">
+                        <input name="id" value="<?php echo $d["idtransaksi"] ?>" style="display:none;">
+                        <input type="file" name="file"><br/>
+                        <label>File Max 10 MB</label><br/>
+                        <button class="mt-1 btn btn-primary" name="upload" type="submit">Simpan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END MODAL FOR EDIT UPLOAD -->
+<?php
+    endforeach;
     foreach ($de["Result"] as $data => $d) :
 ?>
 
