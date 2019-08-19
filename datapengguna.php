@@ -32,6 +32,30 @@ $de = json_decode($profile, true);
 $de1 = json_decode($profile, true);
 
 
+if($_SESSION['sesi_jabatan'] == "User"){ 
+    $finance = "DISABLED";
+    $admin = "DISABLED";
+    $user = "";
+    $menupengguna = "#";
+    $menucustomer = "datacustomer.php";
+    $menutransaksi = "datatransaksi.php"; 
+} 
+elseif ($_SESSION['sesi_jabatan'] == "Finance") { 
+    $finance = "";
+    $admin = "DISABLED";
+    $user = "DISABLED";
+    $menupengguna = "#";
+    $menucustomer = "#";
+    $menutransaksi = "datatransaksi.php"; 
+} 
+elseif ($_SESSION['sesi_jabatan'] == "Admin") { 
+    $finance = "";
+    $admin = "";
+    $user = ""; 
+    $menupengguna = "datapengguna.php";
+    $menucustomer = "datacustomer.php";
+    $menutransaksi = "datatransaksi.php"; 
+}
     
 ?>
 
@@ -198,20 +222,20 @@ $de1 = json_decode($profile, true);
                                     Dashboard
                                 </a>
                             </li>
-                            <li  class="mm-active" >
-                                <a href="datapengguna.php">
+                            <li class="mm-active">
+                                <a href="<?php echo $menupengguna;?>">
                                     <i class="metismenu-icon pe-7s-user"></i>
                                     Data Pengguna
                                 </a>
                             </li>
                             <li>
-                                <a href="datacustomer.php">
+                            <a href="<?php echo $menucustomer;?>">
                                     <i class="metismenu-icon pe-7s-display2"></i>
                                     Data Customer
                                 </a>
                             </li>
                             <li>
-                                <a href="datatransaksi.php">
+                            <a href="<?php echo $menutransaksi;?>">
                                     <i class="metismenu-icon pe-7s-display2"></i>
                                     Document Manager
                                 </a>
