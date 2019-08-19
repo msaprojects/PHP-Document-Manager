@@ -5,7 +5,7 @@
     $ch = curl_init($profile);
 
     $basedata = array(
-        'idtransaksi'=>$_POST['idtransaksi']
+        'idtransaksi'=>$_POST['id']
     );
 
     $de = json_encode($basedata);

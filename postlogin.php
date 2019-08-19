@@ -27,7 +27,7 @@
     if ($dee[0]['nama']!=""){
         $_SESSION['sesi_nama'] = $dee[0]['nama'];
         $_SESSION['sesi_jabatan'] = $dee[0]['jabatan'];
-        $_SESSION['logged_in'] = true;
+        $_SESSION['logged_in'] = "true";
         header('Location: dashboard.php');
     }else{
         header('Location: login.php');

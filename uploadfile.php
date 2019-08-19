@@ -16,10 +16,10 @@
             $query = mysqli_query($con, "UPDATE transaksi set file = '$nama' WHERE idtransaksi=$id;");
             if($query){
                 echo 'FILE BERHASIL DI UPLOAD';
-                header('Location: datacustomer.php');
+                header('Location: datatransaksi.php');
             }else{
                 echo 'GAGAL MENGUPLOAD GAMBAR';
-                echo '<Ulangi Lagi>'
+                echo '<Ulangi Lagi>';
             }
         // }else{
         //     echo 'UKURAN FILE TERLALU BESAR';
