@@ -126,21 +126,7 @@ elseif ($_SESSION['sesi_jabatan'] == "Admin") {
                             <button class="search-icon"><span></span></button>
                         </div>
                         <button class="close"></button>
-                    </div>
-                    <ul class="header-menu nav">
-                        <li class="nav-item">
-                            <a href="javascript:void(0);" class="nav-link">
-                                <i class="nav-link-icon fa fa-database"> </i>
-                                Log
-                            </a>
-                        </li>
-                        <li class="dropdown nav-item">
-                            <a href="javascript:void(0);" class="nav-link">
-                                <i class="nav-link-icon fa fa-cog"></i>
-                                Pengaturan
-                            </a>
-                        </li>
-                    </ul>        
+                    </div> 
                     </div>
                 <div class="app-header-right">
                 <div class="header-btn-lg pr-0">
