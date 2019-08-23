@@ -1,11 +1,11 @@
 <?php
-header('Location: datatransaksi.php');
-   $profile = "localhost:8989/transaksiu";
+// header('Location: datatransaksi.php');
+   $profile = "192.168.4.77:8989/transaksiu";
 
     $ch = curl_init($profile);
     
     $basedata = array(
-        'idtransaksi'=> $_POST['idtransaksi'],
+        'idtransaksi'=> $_POST['id'],
         'nama_tes'=> $_POST['nama_tes'],
         'keterangan'=> $_POST['keterangan'],
         'tgl_tes'=> $_POST['tgl_tes'],
@@ -17,7 +17,7 @@ header('Location: datatransaksi.php');
         'status'=> $_POST['status'],
         'iduser'=> 1
     );
-
+    
     $de = json_encode($basedata);
 
     curl_setopt($ch, CURLOPT_POST, 1);

@@ -1,6 +1,6 @@
 <?php
 header('Location: datatransaksi.php');
-   $profile = "localhost:8989/transaksii";
+   $profile = "192.168.4.77:8989/transaksii";
 
     $ch = curl_init($profile);
     

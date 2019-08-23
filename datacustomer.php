@@ -28,7 +28,7 @@ function http_request($url){
     return $output;
 }
 
-$profile = http_request("localhost:8989/customer");
+$profile = http_request("192.168.4.77:8989/customer");
 $de = json_decode($profile, true);
 $de1 = json_decode($profile, true);
 

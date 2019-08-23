@@ -25,8 +25,8 @@ function http_request($url){
 
 }
 
-    $profile = http_request("localhost:8989/transaksi");
-    $datacustomer = http_request("localhost:8989/customer");
+    $profile = http_request("192.168.4.77:8989/transaksi");
+    $datacustomer = http_request("192.168.4.77:8989/customer");
     $de = json_decode($profile, true);
     $cus = json_decode($datacustomer, true);
 
@@ -40,8 +40,8 @@ function http_request($url){
     } 
     elseif ($_SESSION['sesi_jabatan'] == "Finance") { 
         $finance = "";
-        $admin = "DISABLED";
-        $user = "DISABLED";
+        $admin = "readonly";
+        $user = "readonly";
         $menupengguna = "#";
         $menucustomer = "#";
         $menutransaksi = "datatransaksi.php"; 
@@ -329,6 +329,8 @@ function http_request($url){
                                                     </div>
                                                 </td>
                                                 <th class="text-center">
+                                                    <form action="viewpdf.php" method="post">
+                                                        <button name="file" type="submit" value="<?php echo $d["file"]["String"] ?>">lihat</button></form>
                                                     <button type="button" class="btn mr-2 mb-2 btn-success" data-toggle="modal" data-target=".bd-example-modal-edit<?php echo $d['idtransaksi'] ?>">Edit</button>
                                                     <button type="button" class="btn mr-2 mb-2 btn-success" data-toggle="modal" data-target=".bd-example-modal-upload<?php echo $d['idtransaksi'] ?>" <?php echo $user; ?>>Upload Berkas</button>
                                                     <button type="button" class="btn mr-2 mb-2 btn-danger" data-toggle="modal" data-target=".bd-example-modal-hapus<?php echo $d['idtransaksi'] ?>" <?php echo $admin; ?>>Hapus</button>                                                   
@@ -365,23 +367,23 @@ function http_request($url){
                     </div>
                     <div class="position-relative form-group">
                         <label for="exampleEmail" class="">Keterangan</label>
-                        <input name="keterangan" id="exampleEmail" placeholder="ketik nama anda disini..." type="text" class="form-control" <?php echo $user; ?>
+                        <input name="keterangan" id="exampleEmail" placeholder="ketik nama anda disini..." type="text" class="form-control" <?php echo $user; ?>>
                     </div>
                     <div class="position-relative form-group">
                         <label for="exampleEmail" class="">Tanggal Tes</label>
-                        <input name="tgl_tes" id="exampleEmail" placeholder="ketik nama anda disini..." type="date" class="form-control" <?php echo $user; ?>
+                        <input name="tgl_tes" id="exampleEmail" placeholder="ketik nama anda disini..." type="date" class="form-control" <?php echo $user; ?>>
                     </div>
                     <div class="position-relative form-group">
                         <label for="exampleEmail" class="">Lokasi</label>
-                        <input name="lokasi" id="exampleEmail" placeholder="ketik nama anda disini..." type="text" class="form-control" <?php echo $user; ?>
+                        <input name="lokasi" id="exampleEmail" placeholder="ketik nama anda disini..." type="text" class="form-control" <?php echo $user; ?>>
                     </div>
                     <div class="position-relative form-group">
                         <label for="exampleEmail" class="">Peminta Tes</label>
-                        <input name="peminta_tes" id="exampleEmail" placeholder="ketik nama anda disini..." type="text" class="form-control" <?php echo $user; ?>
+                        <input name="peminta_tes" id="exampleEmail" placeholder="ketik nama anda disini..." type="text" class="form-control" <?php echo $user; ?>>
                     </div>
                     <div class="position-relative form-group">
                         <label for="exampleSelect" class="">Customer</label>
-                        <select name="customer" id="exampleSelect" class="form-control" <?php echo $user; ?>
+                        <select name="customer" id="exampleSelect" class="form-control" <?php echo $user; ?>>
                         <?php foreach ($cus['Result'] as $datac => $c) : ?>
                             <option value="<?php echo $c['idcustomer']; ?>"><?php echo $c['nama']; ?></option>
                         <?php endforeach; ?>
@@ -393,11 +395,11 @@ function http_request($url){
                     </div>
                     <div class="position-relative form-group">
                         <label for="exampleEmail" class="">Finance Tanggal</label>
-                        <input name="finance_tgl" id="exampleEmail" placeholder="ketik nama anda disini..." type="date" class="form-control" <?php echo $finance; ?>
+                        <input name="finance_tgl" id="exampleEmail" placeholder="ketik nama anda disini..." type="date" class="form-control" <?php echo $finance; ?>>
                     </div>
                     <div class="position-relative form-group">
                         <label for="exampleSelect" class="">Status</label>
-                        <select name="status" id="exampleSelect" class="form-control" <?php echo $admin; ?>
+                        <select name="status" id="exampleSelect" class="form-control">
                             <option value="Non-Publish">Non-Publish</option>
                             <option value="Publish">Publish</option>
                         </select>
@@ -475,58 +477,58 @@ function http_request($url){
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">Edit Data <?php echo $d['nama_tes']; ?></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
                 <div class="modal-body"> 
                     <form method="post" action='edittransaksi.php'>
-                    <input name="id" value="<?php echo $d["idtransaksi"] ?>" style="display:none;">
-                    <div class="position-relative form-group"><label for="exampleEmail" class="">Nama Tes</label>
-                        <input name="nama_tes" id="exampleEmail"value="<?php echo $d['nama_tes'] ?>" placeholder="ketik nama anda disini..." type="text" class="form-control" <?php echo $user; ?>
-                    </div>
-                    <div class="position-relative form-group">
-                        <label for="exampleEmail" class="">Keterangan</label>
-                        <input name="keterangan" id="exampleEmail" value="<?php echo $d['keterangan'] ?>" placeholder="ketik nama anda disini..." type="text" class="form-control" <?php echo $user; ?>
-                    </div>
-                    <div class="position-relative form-group">
-                        <label for="exampleEmail" class="">Tanggal Tes</label>
-                        <input name="tgl_tes" id="exampleEmail" value="<?php $d['tanggal'] ?>" placeholder="ketik nama anda disini..." type="date" class="form-control" <?php echo $user; ?>
-                    </div>
-                    <div class="position-relative form-group">
-                        <label for="exampleEmail" class="">Lokasi</label>
-                        <input name="lokasi" id="exampleEmail" value="<?php echo $d['lokasi'] ?>" placeholder="ketik nama anda disini..." type="text" class="form-control" <?php echo $user; ?>
-                    </div>
-                    <div class="position-relative form-group">
-                        <label for="exampleEmail" class="">Peminta Tes</label>
-                        <input name="peminta_tes" id="exampleEmail" value="<?php echo $d['peminta_tes'] ?>" placeholder="ketik nama anda disini..." type="text" class="form-control" <?php echo $user; ?>
-                    </div>
-                    <div class="position-relative form-group">
-                        <label for="exampleSelect" class="">Customer</label>
-                        <select name="customer" id="exampleSelect" class="form-control" <?php echo $user; ?>
-                            <?php foreach ($cus['Result'] as $datac => $c) : ?>
-                                <option value="<?php echo $c['idcustomer']; ?>"><?php echo $c['nama']; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <div class="position-relative form-group">
-                        <label for="exampleEmail" class="">Biaya</label>
-                        <input name="finance_biaya" id="exampleEmail" value="<?php echo $d['finance_biaya'] ?>" placeholder="ketik nama anda disini..." type="text" class="form-control"  <?php echo $finance; ?>
-                    </div>
-                    <div class="position-relative form-group">
-                        <label for="exampleEmail" class="">Finance Tanggal</label>
-                        <input name="finance_tgl" id="exampleEmail" value="<?php echo $d['finance_tgl'] ?>" placeholder="ketik nama anda disini..." type="date" class="form-control"  <?php echo $finance; ?>
-                    </div>
-                    <div class="position-relative form-group">
-                        <label for="exampleSelect" class="">Status</label>
-                        <select name="status" id="exampleSelect" class="form-control"  <?php echo $admin; ?>
-                            <option value="Publish">Publish</option>
-                            <option value="Non-Publish">Non-Publish</option>
-                        </select>
-                    </div>
-                    <br>
-                    <button class="mt-1 btn btn-primary" type="submit">Simpan</button>
+                        <input name="id" value="<?php echo $d["idtransaksi"] ?>">
+                        <div class="position-relative form-group"><label for="exampleEmail" class="">Nama Tes</label>
+                            <input name="nama_tes" id="exampleEmail"value="<?php echo $d['nama_tes']; ?>" placeholder="ketik nama anda disini..." type="text" class="form-control" <?php echo $user; ?>>
+                        </div>
+                        <div class="position-relative form-group">
+                            <label for="exampleEmail" class="">Keterangan</label>
+                            <input name="keterangan" id="exampleEmail" value="<?php echo $d['keterangan'] ?>" placeholder="ketik nama anda disini..." type="text" class="form-control" <?php echo $user; ?>>
+                        </div>
+                        <div class="position-relative form-group">
+                            <label for="exampleEmail" class="">Tanggal Tes</label>
+                            <input name="tgl_tes" id="exampleEmail" value="<?php echo date("Y-m-d", strtotime($d['tgl_tes'])) ?>" placeholder="ketik nama anda disini..." type="date" class="form-control" <?php echo $user; ?>>
+                        </div>
+                        <div class="position-relative form-group">
+                            <label for="exampleEmail" class="">Lokasi</label>
+                            <input name="lokasi" id="exampleEmail" value="<?php echo $d['lokasi'] ?>" placeholder="ketik nama anda disini..." type="text" class="form-control" <?php echo $user; ?>>
+                        </div>
+                        <div class="position-relative form-group">
+                            <label for="exampleEmail" class="">Peminta Tes</label>
+                            <input name="peminta_tes" id="exampleEmail" value="<?php echo $d['peminta_tes'] ?>" placeholder="ketik nama anda disini..." type="text" class="form-control" <?php echo $user; ?>>
+                        </div>
+                        <div class="position-relative form-group">
+                            <label for="exampleSelect" class="">Customer</label>
+                            <select name="customer" id="exampleSelect" class="form-control" <?php echo $user; ?>>
+                                <?php foreach ($cus['Result'] as $datac => $c) : ?>
+                                    <option value="<?php echo $c['idcustomer']; ?>"><?php echo $c['nama']; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="position-relative form-group">
+                            <label for="exampleEmail" class="">Biaya</label>
+                            <input name="finance_biaya" id="exampleEmail" value="<?php echo $d['finance_biaya'] ?>" placeholder="ketik nama anda disini..." type="text" class="form-control"  <?php echo $finance; ?>>
+                        </div>
+                        <div class="position-relative form-group">
+                            <label for="exampleEmail" class="">Finance Tanggal</label>
+                            <input name="finance_tgl" id="exampleEmail" value="<?php echo date("Y-m-d", strtotime($d['finance_tgl'])) ?>" placeholder="ketik nama anda disini..." type="date" class="form-control"  <?php echo $finance; ?>>
+                        </div>
+                        <div class="position-relative form-group">
+                            <label for="exampleSelect" class="">Status</label>
+                            <select name="status" id="exampleSelect" class="form-control"  <?php echo $admin; ?>>
+                                <option value="Publish">Publish</option>
+                                <option value="Non-Publish">Non-Publish</option>
+                            </select>
+                        </div>
+                        <br>
+                        <button class="mt-1 btn btn-primary" type="submit">Simpan</button>
                     </form>
                 </div>
             </div>

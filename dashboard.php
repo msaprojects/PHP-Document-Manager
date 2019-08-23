@@ -29,9 +29,9 @@
         return $output;
     }
     
-    $profile = http_request("localhost:8989/dashboard");
-    $profile2 = http_request("localhost:8989/transaksidashboard");
-    $profile3 = http_request("localhost:8989/transaksiblmaccfinance");
+    $profile = http_request("192.168.4.77:8989/dashboard");
+    $profile2 = http_request("192.168.4.77:8989/transaksidashboard");
+    $profile3 = http_request("192.168.4.77:8989/transaksiblmaccfinance");
     $de = json_decode($profile, true);
     $de2 = json_decode($profile2, true);
     $de3 = json_decode($profile3, true);
