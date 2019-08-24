@@ -241,7 +241,7 @@ elseif ($_SESSION['sesi_jabatan'] == "Admin") {
                                         </i>
                                     </div>
                                     <div>Data Tabel Customer
-                                        <div class="page-title-subheading">List Pengguna
+                                        <div class="page-title-subheading">List Customer
                                         </div>
                                     </div>
                                 </div>
@@ -297,7 +297,7 @@ elseif ($_SESSION['sesi_jabatan'] == "Admin") {
                                 </li>
                             </ul>
                                 <div class="main-card mb-3 card">
-                                    <div class="card-body"><h5 class="card-title">Data Pengguna</h5>
+                                    <div class="card-body"><h5 class="card-title">Data Customer</h5>
                                         <table class="mb-0 table">
                                             <thead>
                                             <tr>

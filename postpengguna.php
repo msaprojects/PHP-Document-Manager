@@ -1,7 +1,7 @@
 <?php
 header('Location: datapengguna.php');
    $profile = "192.168.4.77:8989/useri";
-    // $profile = "localhost:8989/userd";
+    // $profile = "192.168.4.77:8989/userd";
 
     $ch = curl_init($profile);
 
@@ -16,7 +16,7 @@ header('Location: datapengguna.php');
         'nama'=> $_POST['nama'],
         'jabatan'=> $_POST['jabatan'],
         'password'=> $_POST['password'],
-        'aktif'=> $value
+        'aktif'=> 1
 
         // 'aktif'=> 1
     );

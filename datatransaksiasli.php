@@ -25,8 +25,8 @@ function http_request($url){
 
 }
 
-    $profile = http_request("localhost:8989/transaksi");
-    $datacustomer = http_request("localhost:8989/customer");
+    $profile = http_request("192.168.4.77:8989/transaksi");
+    $datacustomer = http_request("192.168.4.77:8989/customer");
     $de = json_decode($profile, true);
     $cus = json_decode($datacustomer, true);
 ?>

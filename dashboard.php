@@ -292,10 +292,16 @@
                                         <td class="text-center"><?php echo $d["tgl_tes"]?></td>
                                         <td class="text-left"><?php echo $d["peminta_tes"]?></td>
                                         <td class="text-right"><?php echo $d["finance_biaya"]?></td>
+                                        <td class="text-right"><?php echo $d["finance_biaya"]?></td>
                                         <?php if(!empty($d["file"]["String"])){ ?>
                                             <td class="text-center">
                                                 <a href="./file/<?php echo $d['file']['String']?>">Download</a>
                                             </td>
+                                            <td>
+                                            <form action="viewpdf.php" method="post">
+                                                <button type="submit" value="<?php echo $d["file"]["String"] ?>" class="btn mr-2 mb-2 btn-success" name="file">Lihat</button>
+                                            </form>
+                                        </td>
                                         <?php } else { ?>
                                         <?php } ?>
                                         </tr>

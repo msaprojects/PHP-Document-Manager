@@ -329,8 +329,6 @@ function http_request($url){
                                                     </div>
                                                 </td>
                                                 <th class="text-center">
-                                                    <form action="viewpdf.php" method="post">
-                                                        <button name="file" type="submit" value="<?php echo $d["file"]["String"] ?>">lihat</button></form>
                                                     <button type="button" class="btn mr-2 mb-2 btn-success" data-toggle="modal" data-target=".bd-example-modal-edit<?php echo $d['idtransaksi'] ?>">Edit</button>
                                                     <button type="button" class="btn mr-2 mb-2 btn-success" data-toggle="modal" data-target=".bd-example-modal-upload<?php echo $d['idtransaksi'] ?>" <?php echo $user; ?>>Upload Berkas</button>
                                                     <button type="button" class="btn mr-2 mb-2 btn-danger" data-toggle="modal" data-target=".bd-example-modal-hapus<?php echo $d['idtransaksi'] ?>" <?php echo $admin; ?>>Hapus</button>                                                   

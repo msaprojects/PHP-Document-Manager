@@ -1,6 +1,6 @@
 <?php
 header('Location: datacustomer.php');
-   $profile = "localhost:8989/customerd";
+   $profile = "192.168.4.77:8989/customerd";
 
     $ch = curl_init($profile);
 
